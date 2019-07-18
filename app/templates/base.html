@@ -6,10 +6,11 @@
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
+<div class="navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
