@@ -1,0 +1,24 @@
+.
+├── LICENSE.md
+├── README.md
+├── config.py
+├── requirements.txt
+├── run.py
+├── app
+│   ├── __init__.py
+│   ├── main
+│   │   ├── __init__.py
+│   │   ├── errors.py
+│   │   ├── forms.py
+│   │   └── views.py
+│   ├── static
+│   │   └── styles.css
+│   └── templates
+│       ├── 404.html
+│       ├── 500.html
+│       ├── base.html
+│       └── index.htm
+└── tests
+    ├── __init__.py
+    ├── test_basics.py
+    └── test_db.py
