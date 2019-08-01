@@ -7,6 +7,9 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')\
         or 'set $SECRET_KEY'
 
+    # SQLAlchemy setting
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
     # Admin account
     ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL')\
         or 'set $ADMIN_EMAIL'
@@ -35,7 +38,7 @@ class DevelopmentConfig(Config):
         'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
     print(" + [DB] " + SQLALCHEMY_DATABASE_URI)
     JSONIFY_PRETTYPRINT_REGULAR = True
-    # Useless ?
+    # Usefull ?
     # TEMPLATES_AUTO_RELOAD = True
 
 
