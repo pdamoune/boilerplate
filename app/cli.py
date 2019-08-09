@@ -1,4 +1,5 @@
 import os
+import shutil
 from . import db
 from app.models import User, Role
 
@@ -110,4 +111,7 @@ def register(app):
                     os.remove(full_pathname)
             if '__pycache__' in dirpath and not os.listdir(dirpath):
                 os.rmdir(dirpath)
-        print('*.pyc and *.pyo files deleted')
+            if dirpath == "./tmp":
+                print('Removing %s' % dirpath)
+                shutil.rmtree(dirpath)
+        print('tmp, *.pyc and *.pyo files deleted')

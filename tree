@@ -1,16 +1,21 @@
 .
+├── .DS_Store
+├── .env
+├── .gitignore
 ├── LICENSE.md
 ├── README.md
-├── config.py
-├── requirements.txt
-├── run.py
+├── RELEASE.md
 ├── app
 │   ├── __init__.py
+│   ├── admin.py
+│   ├── cli.py
+│   ├── fake.py
 │   ├── main
 │   │   ├── __init__.py
 │   │   ├── errors.py
 │   │   ├── forms.py
 │   │   └── views.py
+│   ├── models.py
 │   ├── static
 │   │   └── styles.css
 │   └── templates
@@ -18,7 +23,47 @@
 │       ├── 500.html
 │       ├── base.html
 │       └── index.htm
-└── tests
-    ├── __init__.py
-    ├── test_basics.py
-    └── test_db.py
+├── config.py
+├── data-dev.sqlite
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── 308e36742345_.py
+├── requirements.txt
+├── run.py
+├── tests
+│   ├── __init__.py
+│   ├── test_basics.py
+│   ├── test_cli.py
+│   ├── test_client.py
+│   ├── test_db.py
+│   ├── test_role_model.py
+│   └── test_user_model.py
+├── tmp
+│   └── coverage
+│       ├── app___init___py.html
+│       ├── app_admin_py.html
+│       ├── app_cli_py.html
+│       ├── app_fake_py.html
+│       ├── app_main___init___py.html
+│       ├── app_main_errors_py.html
+│       ├── app_main_forms_py.html
+│       ├── app_main_views_py.html
+│       ├── app_models_py.html
+│       ├── coverage_html.js
+│       ├── index.html
+│       ├── jquery.ba-throttle-debounce.min.js
+│       ├── jquery.hotkeys.js
+│       ├── jquery.isonscreen.js
+│       ├── jquery.min.js
+│       ├── jquery.tablesorter.min.js
+│       ├── keybd_closed.png
+│       ├── keybd_open.png
+│       ├── status.json
+│       └── style.css
+└── tree
+
+9 directories, 57 files
