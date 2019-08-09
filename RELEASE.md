@@ -3,6 +3,18 @@
 
 ### July 18, 2019 Release Notes
 
+* **V0.4**  
+
+This version is about testing. After integrating Flask Admin and Debug Tool Bar, I focused on the test coverage in order to have 100%.
+
+Features added :
+
+  - [X] Debug Tool Bar
+  - [X] Flask Admin
+
+  New tree :
+
+
 * **V0.3**  
 
 As i needed a real push, this release has a lot of new features based on Miguel Grinbergs's tutorial.
@@ -10,11 +22,51 @@ Most of the new features are documented in the files or in the README.me.
 
 Features added :
 
-
+  - [X] Database
+  - [X] Migrate
+  - [X] Test
+  - [X] Cli
+  - [X] Coverage
 
 New tree :
 
+├── .env
+├── .gitignore
+├── LICENSE.md
+├── README.md
+├── RELEASE.md
+├── app
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── main
+│   │   ├── __init__.py
+│   │   ├── errors.py
+│   │   ├── forms.py
+│   │   └── views.py
+│   ├── models.py
+│   ├── static
+│   │   └── styles.css
+│   └── templates
+│       ├── 404.html
+│       ├── 500.html
+│       ├── base.html
+│       └── index.htm
+├── config.py
+├── data-dev.sqlite
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   └── script.py.mako
+├── requirements.txt
+├── run.py
+├── tests
+│   ├── __init__.py
+│   ├── test_basics.py
+│   └── test_db.py
+└── tree
 
+6 directories, 30 files
 
 ### July 18, 2019 Release Notes
 

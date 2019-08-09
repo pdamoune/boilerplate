@@ -1,16 +1,19 @@
 .
+├── .DS_Store
+├── .env
+├── .gitignore
 ├── LICENSE.md
 ├── README.md
-├── config.py
-├── requirements.txt
-├── run.py
+├── RELEASE.md
 ├── app
 │   ├── __init__.py
+│   ├── cli.py
 │   ├── main
 │   │   ├── __init__.py
 │   │   ├── errors.py
 │   │   ├── forms.py
 │   │   └── views.py
+│   ├── models.py
 │   ├── static
 │   │   └── styles.css
 │   └── templates
@@ -18,7 +21,19 @@
 │       ├── 500.html
 │       ├── base.html
 │       └── index.htm
-└── tests
-    ├── __init__.py
-    ├── test_basics.py
-    └── test_db.py
+├── config.py
+├── data-dev.sqlite
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   └── script.py.mako
+├── requirements.txt
+├── run.py
+├── tests
+│   ├── __init__.py
+│   ├── test_basics.py
+│   └── test_db.py
+└── tree
+
+6 directories, 30 files
