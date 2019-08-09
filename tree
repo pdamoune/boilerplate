@@ -42,28 +42,6 @@
 │   ├── test_db.py
 │   ├── test_role_model.py
 │   └── test_user_model.py
-├── tmp
-│   └── coverage
-│       ├── app___init___py.html
-│       ├── app_admin_py.html
-│       ├── app_cli_py.html
-│       ├── app_fake_py.html
-│       ├── app_main___init___py.html
-│       ├── app_main_errors_py.html
-│       ├── app_main_forms_py.html
-│       ├── app_main_views_py.html
-│       ├── app_models_py.html
-│       ├── coverage_html.js
-│       ├── index.html
-│       ├── jquery.ba-throttle-debounce.min.js
-│       ├── jquery.hotkeys.js
-│       ├── jquery.isonscreen.js
-│       ├── jquery.min.js
-│       ├── jquery.tablesorter.min.js
-│       ├── keybd_closed.png
-│       ├── keybd_open.png
-│       ├── status.json
-│       └── style.css
 └── tree
 
-9 directories, 57 files
+7 directories, 37 files

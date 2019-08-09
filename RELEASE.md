@@ -1,7 +1,68 @@
 # Flask Boilerplate
 ### _Flask boilerplate inspired by The Flask Mega-Tutorial by Miguel Grinberg_
 
-### July 18, 2019 Release Notes
+### August 9, 2019 Release Notes
+
+* **V0.4**  
+
+This version is about testing. After integrating Flask Admin and Debug Tool Bar, I focused on the test coverage in order to have 100%.
+
+Features added :
+
+  - [X] Debug Tool Bar
+  - [X] Flask Admin
+
+  New tree :
+```
+.
+├── .env
+├── .gitignore
+├── LICENSE.md
+├── README.md
+├── RELEASE.md
+├── app
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── cli.py
+│   ├── fake.py
+│   ├── main
+│   │   ├── __init__.py
+│   │   ├── errors.py
+│   │   ├── forms.py
+│   │   └── views.py
+│   ├── models.py
+│   ├── static
+│   │   └── styles.css
+│   └── templates
+│       ├── 404.html
+│       ├── 500.html
+│       ├── base.html
+│       └── index.htm
+├── config.py
+├── data-dev.sqlite
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── 308e36742345_.py
+├── requirements.txt
+├── run.py
+├── tests
+│   ├── __init__.py
+│   ├── test_basics.py
+│   ├── test_cli.py
+│   ├── test_client.py
+│   ├── test_db.py
+│   ├── test_role_model.py
+│   └── test_user_model.py
+└── tree
+```
+7 directories, 37 files
+
+
+### August 1, 2019 Release Notes
 
 * **V0.3**  
 
@@ -15,14 +76,47 @@ Features added :
   - [X] Test
   - [X] Cli
   - [X] Coverage
-  - [X] Debug Tool Bar
-  - [X] Flask Admin
-
-
 
 New tree :
 
-
+```
+├── .env
+├── .gitignore
+├── LICENSE.md
+├── README.md
+├── RELEASE.md
+├── app
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── main
+│   │   ├── __init__.py
+│   │   ├── errors.py
+│   │   ├── forms.py
+│   │   └── views.py
+│   ├── models.py
+│   ├── static
+│   │   └── styles.css
+│   └── templates
+│       ├── 404.html
+│       ├── 500.html
+│       ├── base.html
+│       └── index.htm
+├── config.py
+├── data-dev.sqlite
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   └── script.py.mako
+├── requirements.txt
+├── run.py
+├── tests
+│   ├── __init__.py
+│   ├── test_basics.py
+│   └── test_db.py
+└── tree
+```
+6 directories, 30 files
 
 ### July 18, 2019 Release Notes
 
