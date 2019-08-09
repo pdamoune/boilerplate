@@ -1,19 +1,7 @@
 # Flask Boilerplate
 ### _Flask boilerplate inspired by The Flask Mega-Tutorial by Miguel Grinberg_
 
-### July 18, 2019 Release Notes
-
-* **V0.4**  
-
-This version is about testing. After integrating Flask Admin and Debug Tool Bar, I focused on the test coverage in order to have 100%.
-
-Features added :
-
-  - [X] Debug Tool Bar
-  - [X] Flask Admin
-
-  New tree :
-
+### August 1, 2019 Release Notes
 
 * **V0.3**  
 
