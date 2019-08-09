@@ -1,6 +1,4 @@
 import os
-import click
-
 from . import db
 from app.models import User, Role
 
@@ -12,30 +10,30 @@ def register(app):
     @app.cli.command()
     def dropdb():
         """
-        Recreates a local database. You probably should not use this on
-        production.
+        Delete all database data.
         """
         db.drop_all()
         db.session.commit()
+        print('All data has been deleted.')
 
     @app.cli.command()
     def createdb():
         """
-        Recreates a local database. You probably should not use this on
+        Creates a local database. You probably should not use this on
         production.
         """
         db.create_all()
-        db.session.commit()
+        print('Database created')
 
     @app.cli.command()
     def recreatedb():
         """
-        Recreates a local database. You probably should not use this on
-        production.
+        Delete all database data and create a new one
         """
         db.drop_all()
         db.create_all()
         db.session.commit()
+        print('Deleted all database data and created a new one')
 
     @app.cli.command()
     def insertroles():
@@ -44,6 +42,7 @@ def register(app):
         """
         from .models import Role
         Role.insert_roles()
+        print('Roles inserted')
 
     @app.cli.command()
     def createadmin():
@@ -53,14 +52,14 @@ def register(app):
         u = User(
             username=app.config['ADMIN_EMAIL'],
             email=app.config['ADMIN_EMAIL'],
-            password=app.config['ADMIN_PASSWORD'],
+            password_hash=app.config['ADMIN_PASSWORD'],
             role_id=3)
         db.session.add(u)
-        print("[Created] " + str(u))
         db.session.commit()
+        print("[Created] " + str(u))
 
     @app.cli.command()
-    def createusers():
+    def createtestusers():
         """Creates users."""
         perm = {'user': 1, 'moderator': 2, 'administrator': 3}
         users = [
@@ -70,42 +69,33 @@ def register(app):
         ]
         for user in users:
             if User.query.filter_by(username=user[0]).first():
-                print(f'Username {user[0]} already exists.')
-                continue
-            if User.query.filter_by(email=user[1]).first():
-                print(f'Email {user[1]} already used.')
-                continue
+                print('Users already created')
+                break
             u = User(
                 username=user[0],
                 email=user[1],
-                password=user[2],
+                password_hash=user[2],
                 role_id=user[3])
             db.session.add(u)
             print("[Created] " + str(user))
         db.session.commit()
 
     @app.cli.command()
-    def fake():
+    def createfakeusers():
         """
         Creates fake users and posts. You probably should not use this on
         production.
         """
-        from app.fake import users, posts
-        users(30)
-        posts(30)
-
-    @app.cli.command()
-    @click.argument('test_name', required=False)
-    def test(test_name=None):
-        """Run a specific unit test."""
-        import unittest
-        print("test")
-        if test_name is None:
-            tests = unittest.TestLoader().discover('tests')
-        else:
-            tests = unittest.TestLoader().loadTestsFromName(
-                'tests.' + test_name)
-        unittest.TextTestRunner(verbosity=2).run(tests)
+        from faker import Faker
+        fake = Faker()
+        i = 0
+        while i < 10:
+            u = User(email=fake.email(),
+                     username=fake.user_name(),
+                     password='password')
+            db.session.add(u)
+            i += 1
+        db.session.commit()
 
     @app.cli.command()
     def clean():
@@ -120,3 +110,4 @@ def register(app):
                     os.remove(full_pathname)
             if '__pycache__' in dirpath and not os.listdir(dirpath):
                 os.rmdir(dirpath)
+        print('*.pyc and *.pyo files deleted')

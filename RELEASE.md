@@ -10,6 +10,14 @@ Most of the new features are documented in the files or in the README.me.
 
 Features added :
 
+  - [X] Database
+  - [X] Migrate
+  - [X] Test
+  - [X] Cli
+  - [X] Coverage
+  - [X] Debug Tool Bar
+  - [X] Flask Admin
+
 
 
 New tree :

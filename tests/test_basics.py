@@ -1,10 +1,14 @@
 import unittest
-import json
 from flask import current_app
-from app import create_app, db, customcli
+from app import create_app, db
+from tests import c
 
 
 class BasicsTestCase(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        print("\033[36m[BasicsTestCase] \033[m")
+
     def setUp(self):
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
@@ -22,5 +26,4 @@ class BasicsTestCase(unittest.TestCase):
     def test_app_is_testing(self):
         self.assertTrue(current_app.config['TESTING'])
 
-    def test_cli_createdb(self):
-        customcli.createdb()
+    print(c['RST'])
