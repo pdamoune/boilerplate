@@ -3,6 +3,14 @@
 
 ### August 9, 2019 Release Notes
 
+* **V0.5**  
+
+This version is implementing all users features
+
+
+
+### August 9, 2019 Release Notes
+
 * **V0.4**  
 
 This version is about testing. After integrating Flask Admin and Debug Tool Bar, I focused on the test coverage in order to have 100%.

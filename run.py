@@ -1,6 +1,7 @@
 import os
 import sys
 
+#  Has to be before the creation of the app to cover all the folders and files
 COV = None
 if os.environ.get('FLASK_COVERAGE'):
     import coverage

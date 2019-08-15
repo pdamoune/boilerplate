@@ -53,7 +53,7 @@ def register(app):
         u = User(
             username=app.config['ADMIN_EMAIL'],
             email=app.config['ADMIN_EMAIL'],
-            password_hash=app.config['ADMIN_PASSWORD'],
+            password=app.config['ADMIN_PASSWORD'],
             role_id=3)
         db.session.add(u)
         db.session.commit()
@@ -64,9 +64,31 @@ def register(app):
         """Creates users."""
         perm = {'user': 1, 'moderator': 2, 'administrator': 3}
         users = [
-            ['philippe1', 'philippe1@test.com', 'test', perm['user']],
-            ['testmod132', 'testmod12@test.com', 'test', perm['moderator']],
-            ['testadmin132', 'testadmin13@test.com', 'test', perm['administrator']],
+            [
+                'test_classic',
+                'test_classic@test.com',
+                'test',
+                perm['user']],
+            [
+                'test_samepassword1',
+                'test_samepassword1@test.com',
+                'samepassword',
+                perm['user']],
+            [
+                'test_samepassword2',
+                'test_samepassword2@test.com',
+                'samepassword',
+                perm['user']],
+            [
+                'test_moderator',
+                'test_moderator@test.com',
+                'test',
+                perm['moderator']],
+            [
+                'test_administrator',
+                'test_admin@test.com',
+                'test',
+                perm['administrator']],
         ]
         for user in users:
             if User.query.filter_by(username=user[0]).first():
@@ -75,7 +97,7 @@ def register(app):
             u = User(
                 username=user[0],
                 email=user[1],
-                password_hash=user[2],
+                password=user[2],
                 role_id=user[3])
             db.session.add(u)
             print("[Created] " + str(user))
