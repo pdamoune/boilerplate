@@ -25,6 +25,7 @@ class Config:
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 
+
     @staticmethod
     def init_app(app):
         pass
@@ -38,14 +39,17 @@ class DevelopmentConfig(Config):
         'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
     print(" + [DB] " + SQLALCHEMY_DATABASE_URI)
     JSONIFY_PRETTYPRINT_REGULAR = True
+    WTF_CSRF_ENABLED = False
     # Usefull ?
     # TEMPLATES_AUTO_RELOAD = True
 
 
 class TestingConfig(Config):
     TESTING = True
+    DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
         'sqlite://'
+    WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(Config):

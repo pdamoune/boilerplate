@@ -1,7 +1,6 @@
 import unittest
 from flask import current_app
 from app import create_app, db
-from tests import c
 
 
 class TestDb(unittest.TestCase):

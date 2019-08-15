@@ -7,7 +7,7 @@ from app import db
 
 def init_app(app):
     app.register_blueprint(main_blueprint)
-    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     admin = _Admin()
     admin.init_app(app)

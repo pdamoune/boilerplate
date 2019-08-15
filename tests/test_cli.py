@@ -2,7 +2,6 @@ import unittest
 import time
 from app import create_app, db, cli, config
 from app.models import User
-from tests import c
 
 
 class CLITestCase(unittest.TestCase):

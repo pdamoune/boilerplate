@@ -24,7 +24,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-right">
-                    {% if current_user.can(Permission.ADMIN) %}
+                    {% if current_user.is_administrator() %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
                     </li>
@@ -44,7 +44,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container" id="index">
     {% for message in get_flashed_messages() %}
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">&times;</button>

@@ -10,7 +10,7 @@ if os.environ.get('FLASK_COVERAGE'):
 
 from flask_migrate import Migrate
 from app import create_app, db, cli
-from app.models import User, Role
+from app.models import User, Role, Permission
 import click
 
 app = create_app(os.getenv('FLASK_ENV') or 'default')
@@ -20,7 +20,7 @@ cli.register(app)
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User=User, Role=Role)
+    return dict(db=db, User=User, Role=Role, Permission=Permission)
 
 
 @app.cli.command()
