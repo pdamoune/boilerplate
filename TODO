@@ -1,0 +1,11 @@
+*v0.5
+
+[V] Register
+[V] Login
+[V] Logout
+[X] Permissions anonymous/user/admin
+
+[V] Test Register
+[V] Test Login
+[V] Test Logout
+[X] Test Permissions anonymous/user/admin

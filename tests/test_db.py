@@ -1,18 +1,12 @@
 import unittest
 from flask import current_app
-from app import create_app, db
+from app import create_app, db, admin
+from tests import SetUpClass
 
 
-class TestDb(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        print("\033[36m[TestDb] \033[m")
-
+class TestDb(SetUpClass):
     def setUp(self):
-        self.app = create_app('testing')
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-        # db.create_all()
+        self.setUpApp()
 
     def tearDown(self):
         db.session.remove()

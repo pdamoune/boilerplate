@@ -1,15 +1,11 @@
-{% extends "bootstrap/base.html" %}
-
-{% block title %}Boilerplate{% endblock %}
-
+{% extends 'admin/base.html' %}
 {% block head %}
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
 {% endblock %}
-
-{% block navbar %}
+{% block page_body %}
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,45 +13,53 @@
         </button>
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarToggler">
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Boilerplate</a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('main.index') }}">Menu X</a>
+                    <li class="nav-item">
+                        {% block brand %}
+                        <a class="navbar-brand" href="{{ url_for('main.index') }}">Boilerplate</a>
+                        {% endblock %}
                     </li>
+
+                    {% block main_menu %}
+                    <li class="nav-item">
+                    {{ layout.menu() }}
+                    </li>
+                    {% endblock %}
+
                 </ul>
+
                 <ul class="navbar-nav navbar-right">
-                    {% if current_user.is_administrator() %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
                     </li>
-                    {% endif %}
                     <li class="nav-item">
-                        {% if current_user.is_authenticated %}
                         <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
-                        {% else %}
-                        <a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a>
-                        {% endif %}
                     </li>
+                </ul>
+
+                {% block menu_links %}
+                <ul class="nav navbar-right">
+                    {{ layout.menu_links() }}
+                </ul>
+                {% endblock %}
+                {% block access_control %}
+                {% endblock %}
+
                 </ul>
             </div>
         </div>
+
+        <!-- navbar content -->
     </nav>
+    <div class="container-fluid page-header">
+          {% block messages %}
+          {{ layout.messages() }}
+          {% endblock %}
+
+          {# store the jinja2 context for form_rules rendering logic #}
+          {% set render_ctx = h.resolve_ctx() %}
+          {% block body %}{% endblock %}
+        </div>
+      </div>
 </div>
-{% endblock %}
-
-{% block content %}
-<div class="container" id="index">
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
-    </div>
-    {% endfor %}
-
-    {% block page_content %}{% endblock %}
-</div>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
 {% endblock %}

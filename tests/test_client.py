@@ -1,28 +1,17 @@
 import re
 import unittest
-from app import create_app, db
+from app import create_app, db, admin
 from app.models import User, Role
 from wtforms import ValidationError
+from tests import SetUpClass
 
 
-
-class FlaskClientTestCase(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        print("\033[36m[UserModelTestCase] \033[m")
-
+class FlaskClientTestCase(SetUpClass):
     def setUp(self):
-        self.app = create_app('testing')
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+        self.setUpApp()
         db.create_all()
         Role.insert_roles()
         self.client = self.app.test_client(use_cookies=True)
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
 
     def test_home_page(self):
         r = self.client.get('/')

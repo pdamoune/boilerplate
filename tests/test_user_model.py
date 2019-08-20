@@ -1,25 +1,15 @@
 import unittest
 import time
-from app import create_app, db, config
+from app import create_app, db, config, admin
 from app.models import User, AnonymousUser, Role, Permission
+from tests import SetUpClass
 
 
-class UserModelTestCase(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        print("\033[36m[UserModelTestCase] \033[m")
-
+class UserModelTestCase(SetUpClass):
     def setUp(self):
-        self.app = create_app('testing')
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+        self.setUpApp()
         db.create_all()
         Role.insert_roles()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
 
     def test_user_setter(self):
         u = User(email='test@test.com', username='test', password='test')

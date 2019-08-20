@@ -1,24 +1,14 @@
 import unittest
 import time
-from app import create_app, db, cli, config
+from app import create_app, db, cli, config, admin
 from app.models import User
+from tests import SetUpClass
 
 
-class CLITestCase(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        print("\033[36m[CLITestCase] \033[m")
-
+class CLITestCase(SetUpClass):
     def setUp(self):
-        self.app = create_app('testing')
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+        self.setUpApp()
         cli.register(self.app)
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
 
     def test_createdb(self):
         runner = self.app.test_cli_runner()
@@ -35,10 +25,10 @@ class CLITestCase(unittest.TestCase):
         result = runner.invoke(args=['recreatedb'])
         self.assert_('Deleted all database data and created a new one' in result.output)
 
-    def test_insertroles(self):
+    def test_createroles(self):
         self.test_createdb()
         runner = self.app.test_cli_runner()
-        result = runner.invoke(args=['insertroles'])
+        result = runner.invoke(args=['createroles'])
         self.assert_('Roles inserted' in result.output)
 
     def test_createadmin(self):
@@ -69,5 +59,11 @@ class CLITestCase(unittest.TestCase):
         result = runner.invoke(args=['clean'])
         self.assertIn('*.pyc and *.pyo files deleted', result.output)
 
-    # def test_createdb(self):
-    #     register.createdb()
+    def test_createall(self):
+        runner = self.app.test_cli_runner()
+        result = runner.invoke(args=['createall'])
+        self.assert_('Deleted all ' in result.output)
+        self.assert_('Roles inserted' in result.output)
+        self.assert_("[Created] <User 'admin@admin.com'>" in result.output)
+        self.assert_("[Created] ['test_classic'" in result.output)
+        self.assert_('Fake users created' in result.output)
