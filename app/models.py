@@ -103,6 +103,10 @@ class User(UserMixin, db.Model):
     def is_administrator(self):
         return self.can(Permission.ADMIN)
 
+    def is_supervisor(self):
+        return self.can(Permission.ADMIN)
+
+
 
 class AnonymousUser(AnonymousUserMixin):
     def can(self, permissions):
@@ -110,6 +114,9 @@ class AnonymousUser(AnonymousUserMixin):
 
     def is_administrator(self):
         return False
+
+    def is_moderator(self):
+        return self.can(Permission.ADMIN)
 
 
 login_manager.anonymous_user = AnonymousUser

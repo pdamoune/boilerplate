@@ -7,7 +7,7 @@ coverage==4.5.4
 dominate==2.3.5
 Faker==2.0.0
 Flask==1.1.1
-Flask-Admin==1.5.0
+git+git://github.com/ryanbeymer/flask-admin.git
 Flask-Bootstrap4==4.0.2
 Flask-DebugToolbar==0.10.1
 Flask-Login==0.4.1

@@ -6,6 +6,13 @@
 [V] Permissions anonymous/user/admin
 [V] Flask Admin with bootstrap4, permissions set
 
+[X] Mail settings
+[X] Moderator blueprints/access
+[X] Redis
+[X] Facebook/Google API Authentication
+[X] Flask Moment for time management
+[X] Search tool
+
 [V] Test Register
 [V] Test Login
 [V] Test Logout
