@@ -12,6 +12,7 @@ class Admin(FlaskAdmin):
         for model in models:
             self.add_model_view(model, db)
 
+
 class ModelView(FlaskModelView):
     def is_accessible(self):
         return login.current_user.is_administrator()

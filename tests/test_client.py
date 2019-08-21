@@ -1,6 +1,6 @@
 import re
 import unittest
-from app import create_app, db, admin
+from app import create_app, db, admin, config
 from app.models import User, Role
 from wtforms import ValidationError
 from tests import SetUpClass
@@ -38,7 +38,6 @@ class FlaskClientTestCase(SetUpClass):
         self.assertEqual(r.status_code, 200)
         self.assertTrue('Register' in r.get_data(as_text=True))
 
-
     def test_register_and_login(self):
         r = self.client.post('/auth/register', data={
             'email': 'test@test.com',
@@ -54,8 +53,9 @@ class FlaskClientTestCase(SetUpClass):
             'password': 'test'
         }, follow_redirects=True)
         self.assertEqual(r.status_code, 200)
-        self.assertTrue(re.search('Log Out',
-                                  r.get_data(as_text=True)))
+        self.assertTrue(re.search(
+            'Log Out',
+            r.get_data(as_text=True)))
 
         # Log Out
         r = self.client.get('/auth/logout', follow_redirects=True)
@@ -89,3 +89,66 @@ class FlaskClientTestCase(SetUpClass):
         r = self.client.post('/auth/register', data=data)
         self.assertTrue('Username already in use.' in r.get_data(
             as_text=True))
+
+    def test_admin_page_admin(self):
+        r = self.client.post('/auth/register', data={
+            'email': config['testing'].ADMIN_EMAIL,
+            'username': 'admin',
+            'password': config['testing'].ADMIN_PASSWORD,
+            'password2': config['testing'].ADMIN_PASSWORD})
+        self.assertEqual(r.status_code, 302)
+
+        r = self.client.post('/auth/login', data={
+            'email': config['testing'].ADMIN_EMAIL,
+            'password': config['testing'].ADMIN_PASSWORD},
+                follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Log Out' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Admin' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Admin' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin/user', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Admin' in r.get_data(as_text=True))
+
+    def test_admin_page_anonymous(self):
+        r = self.client.get('/admin', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Login' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin/user', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Login' in r.get_data(as_text=True))
+
+    def test_admin_page_user(self):
+        r = self.client.post('/auth/register', data={
+            'email': "simple_user@test.com",
+            'username': 'simple_user',
+            'password': 'password',
+            'password2': 'password'})
+        self.assertEqual(r.status_code, 302)
+
+        r = self.client.post('/auth/login', data={
+            'email': 'simple_user@test.com',
+            'password': 'password'},
+                follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Log Out' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Login' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin/user', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Login' in r.get_data(as_text=True))
+
+        r = self.client.get('/admin/user', follow_redirects=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue('Login' in r.get_data(as_text=True))

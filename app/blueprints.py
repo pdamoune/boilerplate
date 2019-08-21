@@ -9,6 +9,7 @@ def init_app(app):
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     from app import admin
-    admin.add_model_views([
-        User, Role
-    ], db)
+    if len(admin._views) == 1:  # Secure blueprints for app testing
+        admin.add_model_views([
+            User, Role
+        ], db)
